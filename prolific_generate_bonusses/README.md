@@ -11,6 +11,7 @@ Simply call `get_bonuses_from_mongo`. It takes:
 * `iteration`: the specific iteration of the experiment to use
 * `bonus_function`: the function to use to generate the bonus. This is specific to your experiment. It takes an input the subset of the data corresponding to one game and returns `False` (or 0) if that game does not get a bonus or a dollar amount if it does.
 * `bonus_function_params` (optional): a dictionary of named parameters to pass to the bonus function. E.g. `{'threshold':0.5,'bonus':2.34}`
+* `exclusion_function` (optional): a function to use to exclude games from the dataframe. It takes the entire dataframe and applied exclusion criteria to it. It returns the dataframe with exclusions applied.
 
 An example of a simple bonus function is:
 ```

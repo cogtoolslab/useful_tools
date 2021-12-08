@@ -74,10 +74,12 @@ def get_bonus_string(bonusses):
     """Convert a bonus to a string"""
     return '\n'.join(['{},{}'.format(k,v) for k,v in bonusses.items()])
 
-def get_bonusses_from_mongo(db, collection, iteration, bonus_function, bonus_function_params={}):
+def get_bonusses_from_mongo(db, collection, iteration, bonus_function, bonus_function_params={}, exclusion_function=None):
     """Get bonusses from mongoDB"""
     df = get_data(db, collection, iteration)
     print('Downloaded {} participants'.format(df[PROL_ID].nunique()))
+    if exclusion_function:
+        df = exclusion_function(df)
     bonusses = get_bonusses(df, bonus_function, bonus_function_params)
     bonus_string = get_bonus_string(bonusses)
     # save to clipboard
