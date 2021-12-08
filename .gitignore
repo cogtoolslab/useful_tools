@@ -1,0 +1,4 @@
+auth.txt
+*.csv
+*.pyc
+prolific_generate_bonusses/main.py
